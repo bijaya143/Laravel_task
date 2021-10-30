@@ -115,7 +115,7 @@
                                     <a class="btn btn-primary ml-3" href="{{url('/edit', $post->id)}}">Edit Post</a>
                                 </span>
                                 <span class="float-right">
-                                    <a class="btn btn-danger" href="{{url('/delete', $post->id)}}">Delete</a>
+                                    <a class="btn btn-danger" onclick="confirm('Are you sure? ') || event.stopimmediatepropagation()" href="{{url('/delete', $post->id)}}">Delete</a>
                                     <!-- <form action="{{url('/delete', $post->id)}}" method="post">
                                         @csrf
                                

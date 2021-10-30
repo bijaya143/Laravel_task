@@ -21,13 +21,17 @@ use App\Http\Controllers\PostsController;
 
 Route::get('/', [PostsController::class, 'index']);
 Route::get('/pages', [PostsController::class, 'pages'])->name('post.pages');
-Route::get('/create', [PostsController::class, 'createPage']);
-Route::post('/upload', [PostsController::class, 'uploadPage']);
 Route::get('/page/{id}', [PostsController::class, 'viewPage']);
-Route::get('/edit/{id}', [PostsController::class, 'editPage']);
-Route::post('/update/{id}', [PostsController::class, 'updatePage']);
-Route::get('/delete/{id}', [PostsController::class, 'destroyPage']);
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+// Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+//     return view('dashboard');
+// })->name('dashboard');
+
+Route::middleware(['auth:sanctum', 'verified'])->group(function(){
+    Route::get('/create', [PostsController::class, 'createPage']);
+    Route::post('/upload', [PostsController::class, 'uploadPage']);
+    Route::get('/edit/{id}', [PostsController::class, 'editPage']);
+    Route::post('/update/{id}', [PostsController::class, 'updatePage']);
+    Route::get('/delete/{id}', [PostsController::class, 'destroyPage']);
+
+});
